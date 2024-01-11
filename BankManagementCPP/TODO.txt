@@ -1,0 +1,7 @@
+11 Aralik:
+-User hesap silmek isteyebilir Hem bu amacla hem de baska amaclar icinde (.txt dosyasinda duzenleme esnekligi)
+ .txt dosyasi iceriginde spesifik yerleri silebildigin bir fonksiyon olustur.
+
+-ustteki madde bittikten sonra istenilen bilgi icerigini ayri bir string icerigine atmaya yarayan bir yapida
+ Fonksiyon olusturulabilir. Bu fonksiyon sayesinde istenilen user bilgisi .txt dosyasindan cekilebilir ve 
+ fonksiyonumuz bu bilgileri return ederek bunlarin farkli yerlerde kullanilmasinin onunu acabilir.
