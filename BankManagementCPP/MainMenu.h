@@ -2,6 +2,10 @@
 #include "IMainMenu.h"
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
+
+using namespace std::chrono_literals;
 
 class MainMenu : public IMainMenu {
 public:
@@ -11,6 +15,7 @@ public:
 	void MainMenuStructure() override {
 		int user_input;
 		int try_login_counter = 0;
+		int time_out = 60;
 		if (LocalLoginFlag) {
 			std::cout << "Please Select the action to be performed if you write 0 sign up screen will be open or write 1 login menu will be open: " << std::endl;
 			std::cin >> user_input;
@@ -26,10 +31,15 @@ public:
 					std::cout << "You entered the ID or Password incorrectly" << std::endl;
 					try_login_counter++;
 					if (try_login_counter == 3) {
-						std::cout << "You entered ID or Password incorrect 3 times. Please try again later\n";
+						std::cout << "You entered ID or Password incorrect 3 times. Please try again after 60 seconds\n";
 						CheckLoginFlag = false;
 						LocalLoginFlag = true;
 						try_login_counter = 0;
+						while(time_out > 0) {
+						  std::cout << "wait for " << time_out << " seconds for try login again!\n";
+						  std::this_thread::sleep_for(1s);
+						  time_out--;
+						}
 						break;
 					}
 				}
@@ -93,8 +103,8 @@ private:
 		CheckPasswordAppoprity(user_input_2, user_input_1);
 		std::cout << "Please specify your Email: " << std::endl;
 		std::cin >> user_input_3;
-		std::ofstream user_input_1_(user_input_1);
-		user_input_1_ << 0;
+		std::ofstream user_input_1_(user_input_1); //Open a new file for logging and save amount of money in the account.
+		user_input_1_ << 0; // initialize the amount of money to zero.
 		user_input_1_.close();
 		return d.WriteUserInformationToDataBaseFile(user_input_1, user_input_2, user_input_3);
 	}
